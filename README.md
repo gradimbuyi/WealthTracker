@@ -1,4 +1,4 @@
-# Wealth Tracker APP
+# WealthTracker
 
 A personal finance application that enables users to manually manage bank accounts and record financial transactions in one place. The application provides an interactive dashboard with charts and summaries that help users visualize account balance, spending patterns, and overall financal activity. It is build React, Node.js, Express, and MongoDB using a scalable, containerized architecture.
 
