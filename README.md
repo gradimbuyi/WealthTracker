@@ -1,59 +1,74 @@
 # Wealth Tracker APP
 
-A platform to manage your wealth
+A personal finance application that enables users to manually manage bank accounts and record financial transactions in one place. The application provides an interactive dashboard with charts and summaries that help users visualize account balance, spending patterns, and overall financal activity. It is build React, Node.js, Express, and MongoDB using a scalable, containerized architecture.
+
+## Features
+
+- Secure Authentication - Create and account, sign in securely, and manage personal financial data
+- Bank Account Management - Manage multiple bank accounts with customizable account details
+- Transactions Tracking - Record deposits and transfers while maintaining a complete transaction history.
+- Financial Dashboard - View account balances and key financial metrics from a centralized dashboard.
 
 ## Folder Structure
 
 ```
+├── /.github
 ├── /backend
+├── /docs
 ├── /frontend
-├── /private
-├── .env.deploy
+├── /mobile
 ├── .gitignore
-├── deploy_backend.sh
-├── deploy_frontend.sh
-├── deploy.sh
+├── docker-compose.yml
 └── README.md
 ```
 
-## Dependencies
+## Getting Started
 
-Documentation for backend and frontend dependencies can be found in their respective README.md files.
+### Prerequisites
 
-## Deployment
+Before you begin, ensure you have the following installed:
 
-This application is deployed on a DigitalOcean Droplet running ubuntu 22.04 LTS. Deployment is handled through the shell scripts: `deploy.sh`, `deploy_backend.sh`, and `deploy_frontend.sh`.
+- Node.js (v22 or later)
+- Docker & Docker Compose
+- Git
 
-### 1. .env.deploy file set up
+### Installation
 
-These values are needed to successfully run the deployment scripts.
-
-```
-REMOTE_USER = name
-REMOTE_HOST = ip_address
-REMOTE_PASS = password
-REMOTE_BACKEND_PATH = vm_backend_path
-REMOTE_FRONTEND_PATH = vm_frontend_path
-```
-
-_Note: The remote password is not automatically injected in the scripts. Developers will have to manually insert it when prompted during the deployment process._
-
-### 2. Script Usage
-
-Deploying both the frontend and backend:
+Clone repository:
 
 ```bash
-bash deploy.sh
+git clone git@github.com:gradimbuyi/WealthTracker.git
 ```
 
-Deploying only the frontend:
+### Environment Variables
+
+Create a ```.env``` file in both the frontend and backend directory using the provided examples:
+
+backend/.env.example AND frontend/.env.example
+
+### Running with Docker
+
+Build and start all services:
 
 ```bash
-bash deploy_frontend.sh
+docker compose up --build
 ```
 
-Deploying only the backend:
+Stopping the application:
 
 ```bash
-bash deploy_backend.sh
+docker compose down
 ```
+
+## Contributors
+
+Samuel Eisert, Adam Green, Gavin
+Blanchard, Gradi Tshielekeja Mbu
+
+The following individuals contributed to the development of the application:
+
+- Gradi Mbuyi - Backend development, system architecture, and deployment.
+- Adam Green - Frontend development, UI/UX design.
+- Gaving Blanchard - Mobile development, UI/UX design.
+- Samuel Eisert - Database Management.
+
