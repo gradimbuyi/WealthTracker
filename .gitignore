@@ -31,3 +31,5 @@ dist-ssr/
 *.sw?
 private
 .env.deploy
+.github
+.vscode
