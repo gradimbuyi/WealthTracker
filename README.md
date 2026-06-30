@@ -62,9 +62,6 @@ docker compose down
 
 ## Contributors
 
-Samuel Eisert, Adam Green, Gavin
-Blanchard, Gradi Tshielekeja Mbu
-
 The following individuals contributed to the development of the application:
 
 - Gradi Mbuyi - Backend development, system architecture, and deployment.
