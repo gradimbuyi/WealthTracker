@@ -1,0 +1,67 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_OWNER: gradimbuyi
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Backend Image
+        run: |
+          docker build \
+            -t $REGISTRY/$IMAGE_OWNER/wealthtrackit-backend:latest \
+            -t $REGISTRY/$IMAGE_OWNER/wealthtrackit-backend:${{ github.sha }} \
+            ./backend
+
+      - name: Build Frontend Image
+        run: |
+          docker build \
+            -t $REGISTRY/$IMAGE_OWNER/wealthtrackit-frontend:latest \
+            -t $REGISTRY/$IMAGE_OWNER/wealthtrackit-frontend:${{ github.sha }} \
+            ./frontend
+
+      - name: Push Backend Image
+        run: |
+          docker push $REGISTRY/$IMAGE_OWNER/wealthtrackit-backend:latest
+          docker push $REGISTRY/$IMAGE_OWNER/wealthtrackit-backend:${{ github.sha }}
+
+      - name: Push Frontend Image
+        run: |
+          docker push $REGISTRY/$IMAGE_OWNER/wealthtrackit-frontend:latest
+          docker push $REGISTRY/$IMAGE_OWNER/wealthtrackit-frontend:${{ github.sha }}
+
+      - name: Deploy to DigitalOcean
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USERNAME }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd /opt/wealthtracker
+            git fetch origin
+            git reset --hard origin/main
+            docker compose -f docker-compose.prod.yml pull
+            docker compose -f docker-compose.prod.yml up -d --remove-orphans
+            docker image prune -f

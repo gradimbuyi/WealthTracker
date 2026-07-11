@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Get API URL from environment variable (default to port 5050)
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+const API_BASE_URL = '/api';
 
 // Create axios instance with default config
 const api = axios.create({

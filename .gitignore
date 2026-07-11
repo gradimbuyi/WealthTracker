@@ -16,6 +16,8 @@ dist-ssr/
 
 # Environment files
 .env
+.env.production
+.env.development
 .env.local
 .env.*.local
 
@@ -31,5 +33,4 @@ dist-ssr/
 *.sw?
 private
 .env.deploy
-.github
 .vscode
