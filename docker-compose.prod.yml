@@ -6,7 +6,7 @@ services:
     container_name: w-backend
     restart: unless-stopped
     env_file:
-      - .env
+      - ./backend/.env
     expose:
       - "5000"
     networks:
@@ -32,7 +32,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - w-network
 
