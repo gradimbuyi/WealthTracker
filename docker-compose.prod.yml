@@ -6,7 +6,7 @@ services:
     container_name: w-backend
     restart: unless-stopped
     env_file:
-      - ./backend.env
+      - .env
     expose:
       - "5000"
     networks:
