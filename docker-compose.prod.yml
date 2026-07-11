@@ -16,8 +16,8 @@ services:
     image: ghcr.io/gradimbuyi/wealthtrackit-frontend:latest
     container_name: w-frontend
     restart: unless-stopped
-    expose:
-      - "80"
+    ports:
+      - "80:80"
     networks:
       - w-network
 
