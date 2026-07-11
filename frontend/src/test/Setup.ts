@@ -29,7 +29,7 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 };
-global.localStorage = localStorageMock as any;
+globalThis.localStorage = localStorageMock as any;
 
 // Mock scrollTo
-global.scrollTo = vi.fn();
+globalThis.scrollTo = vi.fn();
