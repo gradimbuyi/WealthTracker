@@ -18,6 +18,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "433:433"
     networks:
       - w-network
 
