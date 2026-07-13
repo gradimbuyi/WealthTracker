@@ -19,6 +19,8 @@ services:
     ports:
       - "80:80"
       - "433:433"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - w-network
 

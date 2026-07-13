@@ -33,5 +33,5 @@ docker compose -f docker-compose.prod.yml up -d
 **Renew the certificate**
 
 ```
-sudo certbot renew docker compose -f docker-compose.prod.yml restart frontend
+sudo certbot renew docker compose -f docker-compose.prod.yml restart w-frontend
 ```
