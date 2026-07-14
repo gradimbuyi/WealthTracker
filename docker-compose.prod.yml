@@ -6,7 +6,7 @@ services:
     container_name: w-backend
     restart: unless-stopped
     env_file:
-      - ./backend/.env
+      - .env
     expose:
       - "5000"
     networks:
@@ -18,6 +18,9 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - w-network
 
