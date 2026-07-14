@@ -30,6 +30,9 @@ jobs:
       - name: Run tests
         env:
           NODE_ENV: test
+          DB_NAME: testDB
+          JWT_SECRET: testJwtSecret
+          
         run: npm test
 
   build:
