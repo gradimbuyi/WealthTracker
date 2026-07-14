@@ -42,9 +42,8 @@ function VerifyEmailPage() {
 
     try {
       const user = JSON.parse(pendingUser!);
-      const API_URL = import.meta.env.VITE_API_URL;
       
-      const response = await fetch(`${API_URL}/api/verify-email`, {
+      const response = await fetch(`api/verify-email`, {
         method: 'POST',
         body: JSON.stringify({ 
           userId: user.id,
@@ -88,9 +87,8 @@ function VerifyEmailPage() {
 
     try {
       const user = JSON.parse(pendingUser!);
-      const API_URL = import.meta.env.VITE_API_URL;
-      
-      const response = await fetch(`${API_URL}/api/resend-verification`, {
+            
+      const response = await fetch(`api/resend-verification`, {
         method: 'POST',
         body: JSON.stringify({ userId: user.id }),
         headers: { 'Content-Type': 'application/json' }

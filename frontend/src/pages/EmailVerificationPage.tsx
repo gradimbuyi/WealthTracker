@@ -23,11 +23,7 @@ function EmailVerificationPage() {
     }
 
     try {
-      // Use VITE_API_URL which already includes /api
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
-      
-      // Don't add /api again - it's already in VITE_API_URL
-      const response = await fetch(`${API_URL}/verify?token=${token}`, {
+      const response = await fetch(`api/verify?token=${token}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -76,12 +72,8 @@ function EmailVerificationPage() {
     setIsResending(true);
     setMessage('');
 
-    try {
-      // Use VITE_API_URL which already includes /api
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
-      
-      // Don't add /api again - it's already in VITE_API_URL
-      const response = await fetch(`${API_URL}/resend-verification`, {
+    try {      
+      const response = await fetch(`api/resend-verification`, {
         method: 'POST',
         body: JSON.stringify({ email: resendEmail }),
         headers: { 'Content-Type': 'application/json' }
