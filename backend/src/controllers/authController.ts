@@ -17,9 +17,9 @@ const brevoClient = new Brevo.TransactionalEmailsApi();
 brevoClient.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY as string);
 
 async function sendVerificationEmail(user: any, id: ObjectId, subject = 'Verify your account', isResend = false) {
+    if(process.env.NODE_ENV == 'test') return true;
+    
     const verificationToken = jwt.sign({ id: id.toString() }, JWT_SECRET, { expiresIn: '15m' });
-
-    // URL encode the token to prevent special characters from breaking the link
     const encodedToken = encodeURIComponent(verificationToken);
     const verificationLink = `${process.env.FRONTEND_URL}/verify?token=${encodedToken}`;
 
