@@ -18,7 +18,7 @@ brevoClient.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BR
 
 async function sendVerificationEmail(user: any, id: ObjectId, subject = 'Verify your account', isResend = false) {
     if(process.env.NODE_ENV == 'test') return true;
-    
+
     const verificationToken = jwt.sign({ id: id.toString() }, JWT_SECRET, { expiresIn: '15m' });
     const encodedToken = encodeURIComponent(verificationToken);
     const verificationLink = `${process.env.FRONTEND_URL}/verify?token=${encodedToken}`;
@@ -42,6 +42,8 @@ async function sendVerificationEmail(user: any, id: ObjectId, subject = 'Verify 
 }
 
 async function sendPasswordRecoveryEmail(user: any, resetToken: string) {
+    if(process.env.NODE_ENV == 'test') return true;
+
     const passwordResetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
     const emailSubject = 'Reset Password';
     const message = `
