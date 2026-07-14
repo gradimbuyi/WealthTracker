@@ -7,10 +7,12 @@ let server: MongoMemoryServer;
 let uri: string;
 
 async function setupTestDB() {
-    server = await MongoMemoryServer.create();
-    uri = server.getUri();
     process.env.DB_NAME = 'testDB';
     process.env.JWT_SECRET = 'testJwtSecret';
+    process.env.NODE_ENV = 'test'
+
+    server = await MongoMemoryServer.create();
+    uri = server.getUri();
     await connectDB(uri);
 }
 
